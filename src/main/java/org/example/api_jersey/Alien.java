@@ -2,8 +2,10 @@ package org.example.api_jersey;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @ApplicationPath("/api")
+@XmlRootElement
 public class Alien extends Application {
     private int id;
     private String name;

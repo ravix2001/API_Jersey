@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 @Path("/aliens")
@@ -19,15 +20,15 @@ public class AlienResource {
 
     @GET
     @Path("/alien/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Alien getAlienById(@PathParam("id") int id){
         return alienRepository.getAlienById(id);
     }
 
     @POST
     @Path("/alien")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response createAlien(Alien alien) {
         System.out.println(alien);
         alienRepository.createAlien(alien);
@@ -36,7 +37,7 @@ public class AlienResource {
 
     @PUT
     @Path("/alien")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response updateAlien(Alien alien) {
         System.out.println(alien);
         if(alienRepository.getAlienById(alien.getId()).getId() == 0){
